@@ -1,0 +1,21 @@
+name: Run basic code checks
+on: [push, pull_request]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    - uses: actions/setup-node@v3
+      with:
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install
+    - name: Build the website
+      run: pnpm run build
+    - name: Lint the code
+      run: pnpm run lint
+    - name: Run unit tests
+      run: pnpm run test:unit

@@ -1,0 +1,186 @@
+:root {
+    --color-hybrid: midnightblue;
+    --bgcolor-hybrid: lightsteelblue;
+
+    --color-pks: purple;
+    --bgcolor-pks: sandybrown;
+
+    --color-carbohydrate: white;
+    --bgcolor-carbohydrate: purple;
+
+    --color-pigment: white;
+    --bgcolor-pigment: peru;
+
+    --color-nrps: white;
+    --bgcolor-nrps: seagreen;
+
+    --color-ripp: white;
+    --bgcolor-ripp: royalblue;
+
+    --color-lanthipeptide: blue;
+    --bgcolor-lanthipeptide: #ffff77;
+
+    --color-thiopeptide: black;
+    --bgcolor-thiopeptide: gold;
+
+    --color-relaxed: black;
+    --bgcolor-relaxed: #f2f2f2;
+}
+
+.secmet:hover {
+    filter: brightness(1.5);
+}
+
+.hybrid {
+    background-color: var(--bgcolor-hybrid);
+    color: var(--color-hybrid);
+}
+
+.t1pks,
+.transat-pks,
+.transat-pks-like,
+.t2pks,
+.t3pks,
+.hgle-ks,
+.ppys-ks,
+.pks-like,
+.pks {
+    background-color: var(--bgcolor-pks);
+    color: var(--color-pks);
+}
+
+.arylpolyene,
+.melanin {
+    background-color: var(--bgcolor-pigment);
+    color: var(--color-pigment);
+}
+
+.resorcinol,
+.ladderane,
+.pufa,
+.terpene,
+.pbde,
+.betalactone,
+.furan {
+    background-color: var(--bgcolor-carbohydrate);
+    color: var(--color-carbohydrate);
+}
+
+.nrps,
+.t1nrps,
+.nrps-like,
+.cdps,
+.thioamide-nrp {
+    background-color: var(--bgcolor-nrps);
+    color: var(--color-nrps);
+}
+
+.ripp,
+.ras-ripp,
+.fungal-ripp,
+.linaridin,
+.cyanobactin,
+.glycocin,
+.lassopeptide,
+.sactipeptide,
+.bottromycin,
+.head_to_tail,
+.microviridin,
+.proteusin,
+.lipolanthine,
+.fused,
+.ripp-like {
+    background-color: var(--bgcolor-ripp);
+    color: var(--color-ripp);
+}
+
+.lanthipeptide,
+.lanthidin,
+.lanthipeptide-class-i,
+.lanthipeptide-class-ii,
+.lanthipeptide-class-iii,
+.lanthipeptide-class-iv,
+.lanthipeptide-class-v,
+.lipolanthin {
+    background-color: var(--bgcolor-lanthipeptide);
+    color: var(--color-lanthipeptide);
+}
+
+.thiopeptide,
+.lap,
+.thioamitides {
+    background-color: var(--bgcolor-thiopeptide);
+    color: var(--color-thiopeptide);
+}
+
+.blactam {
+    background-color: aliceblue;
+    color: black;
+}
+
+.amglyccycl,
+.aminocoumarin,
+.phosphoglycolipid {
+    background-color: yellowgreen;
+    color: black;
+}
+
+.siderophore {
+    background-color: crimson;
+    color: white;
+}
+
+.ectoine,
+.naggn {
+    background-color: yellowgreen;
+    color: firebrick;
+}
+
+.butyrolactone {
+    background-color: mediumpurple;
+    color: white;
+}
+
+.indole {
+    background-color: peachpuff;
+    color: black;
+}
+
+.nucleoside {
+    background-color: antiquewhite;
+    color: black;
+}
+
+.oligosaccharide {
+    background-color: burlywood;
+    color: black;
+}
+
+.hserlactone,
+.acyl_amino_acids,
+.tropodithietic-acid {
+    background-color: tan;
+    color: black;
+}
+
+.phenazine {
+    background-color: plum;
+    color: black;
+}
+
+.phosphonate {
+    background-color: mediumaquamarine;
+    color: black;
+}
+
+.other {
+    background-color: var(--color-hybrid);
+    color: var(--bgcolor-hybrid);
+}
+
+.saccharide,
+.fatty_acid,
+.halogenated {
+    background-color: var(--bgcolor-relaxed);
+    color: var(--color-relaxed);
+}

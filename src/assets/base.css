@@ -1,0 +1,180 @@
+:root {
+    --as-c-white: #ffffff;
+    --as-c-white-soft: #f8f8f8;
+    --as-c-white-mute: #f2f2f2;
+    --as-c-white-obvious: #bbb;
+
+    --as-c-black: #181818;
+    --as-c-black-soft: #222222;
+    --as-c-black-mute: #282828;
+    --as-c-black-obvious: #333;
+
+    --as-c-indigo: #2c3e50;
+    --as-c-red: #810e15;
+    --as-c-lightred: #ac242d;
+    --as-c-darkred: #4a080c;
+    --as-c-red-error: #e76f51;
+    --as-c-lightblue: #93b8ca;
+    --as-c-lightgray: #dcdcdc;
+    --as-c-green: #2a9d8f;
+
+    --as-c-divider-light-1: rgba(60, 60, 60, 0.29);
+    --as-c-divider-light-2: rgba(60, 60, 60, 0.12);
+    --as-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+    --as-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+    --as-c-text-light-1: var(--as-c-indigo);
+    --as-c-text-light-2: rgba(60, 60, 60, 0.66);
+    --as-c-text-light-3: rgba(60, 60, 60, 0.5);
+    --as-c-text-dark-1: var(--as-c-white);
+    --as-c-text-dark-2: rgba(235, 235, 235, 0.64);
+    --as-c-text-dark-3: rgba(235, 235, 235, 0.5);
+}
+
+/* semantic color variables for this project */
+:root {
+    --color-background: var(--as-c-white);
+    --color-background-soft: var(--as-c-white-soft);
+    --color-background-mute: var(--as-c-white-mute);
+    --color-background-obvious: var(--as-c-white-obvious);
+
+    --color-border: var(--as-c-divider-light-2);
+    --color-border-hover: var(--as-c-divider-light-1);
+
+    --color-heading: var(--as-c-text-light-1);
+    --color-text: var(--as-c-text-light-2);
+    --color-text-soft: var(--as-c-text-light-3);
+
+    --color-backdrop: var(--as-c-white-obvious);
+
+    --color-brand: var(--as-c-red);
+    --color-brand-dark: var(--as-c-darkred);
+
+    --bgcolor-tab-active: var(--as-c-lightred);
+    --color-tab-active: var(--as-c-text-dark-1);
+
+    --color-ok: var(--as-c-green);
+    --color-error: var(--as-c-red-error);
+    --color-info: var(--as-c-lightblue);
+
+    --section-gap: 160px;
+    --grid-gap: 1rem;
+    --grid-min-width: 15ch;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: var(--as-c-black);
+        --color-background-soft: var(--as-c-black-soft);
+        --color-background-mute: var(--as-c-black-mute);
+        --color-background-obvious: var(--as-c-black-obcious);
+
+        --color-border: var(--as-c-divider-dark-2);
+        --color-border-hover: var(--as-c-divider-dark-1);
+
+        --color-heading: var(--as-c-text-dark-1);
+        --color-text: var(--as-c-text-dark-2);
+        --color-text-soft: var(--as-c-text-dark-3);
+
+        --color-backdrop: var(--as-c-black-obvious);
+
+        --color-brand: var(--as-c-lightred);
+        --color-brand-dark: var(--as-c-red);
+
+        --bgcolor-tab-active: var(--as-c-red);
+        --color-tab-active: var(--as-c-text-dark-1);
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+nav,
+nav::before,
+nav::after {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: color 0.5s, background-color 0.5s;
+    line-height: 1.6;
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+    font-family: inherit;
+    line-height: 1.1;
+    color: var(--color-heading);
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small {
+    font-size: 65%;
+    font-weight: normal;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+a {
+    color: var(--color-brand);
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: hsla(0, 100%, 37%, 0.2);
+        text-decoration: underline;
+    }
+}
+
+dt {
+    font-weight: bold;
+}
+
+footer {
+    border-top: 1px solid var(--color-brand);
+    width: 100%;
+    height: 160px;
+    padding-top: 0.25em;
+    margin-top: 2em;
+}
+strong {
+    font-weight: bold;
+}
