@@ -213,13 +213,13 @@ export class QueryTerm {
     termType: string;
 
     // termType == "op"
-    operation: string | null = null;
-    left: QueryTerm | null = null;
-    right: QueryTerm | null = null;
+    operation?: string = undefined;
+    left?: QueryTerm = undefined;
+    right?: QueryTerm = undefined;
 
     // termType == "expr"
     category: string = "";
-    value: string | number | QueryModuleTerm | null = null;
+    value?: string | number | QueryModuleTerm = undefined;
     filters: QueryFilter[] = [];
     count: number = 1;
 
@@ -241,7 +241,7 @@ export class QueryTerm {
         this.right = new QueryTerm("expr");
 
         this.category = "";
-        this.value = null;
+        this.value = undefined;
         this.filters.length = 0;
         this.count = 1;
     }
@@ -264,9 +264,9 @@ export class QueryTerm {
             this.filters = this.right.filters;
             this.count = this.right.count;
 
-            this.left = null;
-            this.right = null;
-            this.operation = null;
+            this.left = undefined;
+            this.right = undefined;
+            this.operation = undefined;
             return;
         }
         this.operation = this.right.operation;
@@ -286,9 +286,9 @@ export class QueryTerm {
             this.filters = this.left.filters;
             this.count = this.left.count;
 
-            this.left = null;
-            this.right = null;
-            this.operation = null;
+            this.left = undefined;
+            this.right = undefined;
+            this.operation = undefined;
             return;
         }
         this.operation = this.left.operation;
@@ -377,12 +377,12 @@ export class QueryTerm {
 
     clear() {
         this.termType = "expr";
-        this.left = null;
-        this.right = null;
-        this.operation = null;
+        this.left = undefined;
+        this.right = undefined;
+        this.operation = undefined;
         this.category = "";
         this.filters.length = 0;
-        this.value = null;
+        this.value = undefined;
         this.count = 1;
     }
 }

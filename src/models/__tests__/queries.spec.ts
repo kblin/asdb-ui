@@ -91,13 +91,13 @@ describe("QueryTerm", () => {
         it("stringifies only the left side of an op if the right side is invalid", () => {
             const term = createOp("AND", createExpr(), new QueryTerm("expr"));
             expect(term.toString()).toBe("{[alice|bob]}");
-            term.right = null;
+            term.right = undefined;
             expect(term.toString()).toBe("{[alice|bob]}");
         });
         it("stringifies only the right side of an op if the left side is invalid", () => {
             const term = createOp("AND", new QueryTerm("expr"));
             expect(term.toString()).toBe("{[charlie|eve]}");
-            term.left = null;
+            term.left = undefined;
             expect(term.toString()).toBe("{[charlie|eve]}");
         });
     });
@@ -132,7 +132,7 @@ describe("QueryTerm", () => {
     describe("removeLeft", () => {
         it("refuses to operate without a right term", () => {
             const term = createOp();
-            term.right = null;
+            term.right = undefined;
             expect(() => term.removeLeft()).toThrowError(QueryTermError);
         });
         it("creates an expr when right is an expr", () => {
@@ -161,7 +161,7 @@ describe("QueryTerm", () => {
     describe("removeRight", () => {
         it("refuses to operate without a left term", () => {
             const term = createOp();
-            term.left = null;
+            term.left = undefined;
             expect(() => term.removeRight()).toThrowError(QueryTermError);
         });
         it("creates an expr when left is an expr", () => {
