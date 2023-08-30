@@ -3,6 +3,8 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import { Job } from "@/models/jobs";
 import { parse, stringify } from "superjson";
 
+export const JOB_URL_BASE = "/api/v1.0/job";
+
 export const useJobsStore = defineStore(
     "jobs",
     () => {
@@ -16,7 +18,7 @@ export const useJobsStore = defineStore(
             let job = _jobs.value.get(jobId);
 
             if (job === undefined) {
-                const raw = await fetch(`/api/v1.0/job/${jobId}`);
+                const raw = await fetch(`${JOB_URL_BASE}/${jobId}`);
                 if (!raw.ok) {
                     return undefined;
                 }

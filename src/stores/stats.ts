@@ -2,6 +2,8 @@ import { ref, reactive } from "vue";
 import { defineStore } from "pinia";
 import { AsdbStats } from "@/models/stats";
 
+export const STATS_URL = "/api/stats";
+
 export const useStatsStore = defineStore("stats", () => {
     const stats = reactive(new AsdbStats());
     const error = ref("");
@@ -13,7 +15,7 @@ export const useStatsStore = defineStore("stats", () => {
             return;
         }
         status.value = "loading";
-        const statsResponse = await fetch("/api/v2.0/stats");
+        const statsResponse = await fetch(STATS_URL);
         if (!statsResponse.ok) {
             error.value = statsResponse.statusText;
             return;

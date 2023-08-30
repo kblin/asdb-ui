@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { fetchErrorResponse, fetchInvalidJsonResponse, fetchJsonResponse } from "../test_utils";
-import { useQueriesStore } from "../queries";
+import { useQueriesStore, SEARCH_URL, CONVERT_URL } from "../queries";
 
 global.fetch = vi.fn();
 
@@ -99,7 +99,7 @@ describe("Queries Store", () => {
             const promise = store.runSearch();
             expect(store.state).toBe("running");
             await promise;
-            expect(fetch).toHaveBeenCalledWith("/api/v2.0/search", {
+            expect(fetch).toHaveBeenCalledWith(SEARCH_URL, {
                 method: "POST",
                 body: JSON.stringify(QUERY),
                 headers: {
@@ -146,7 +146,7 @@ describe("Queries Store", () => {
             await promise;
             const query = JSON.parse(JSON.stringify(QUERY));
             query.offset = 1;
-            expect(fetch).toHaveBeenCalledWith("/api/v2.0/search", {
+            expect(fetch).toHaveBeenCalledWith(SEARCH_URL, {
                 method: "POST",
                 body: JSON.stringify(query),
                 headers: {
@@ -202,7 +202,7 @@ describe("Queries Store", () => {
                 })
             );
             await store.convertSearch(search);
-            const expectedUrl = new URL("/api/v1.0/convert", `${window.location}`);
+            const expectedUrl = new URL(CONVERT_URL, `${window.location}`);
             expectedUrl.searchParams.set("search_string", search);
             expect(fetch).toHaveBeenCalledWith(expectedUrl);
             expect(store.term.toString()).toBe(search);

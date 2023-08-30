@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { fetchErrorResponse, fetchInvalidJsonResponse, fetchJsonResponse } from "../test_utils";
 
-import { useStatsStore } from "../stats";
+import { useStatsStore, STATS_URL } from "../stats";
 
 global.fetch = vi.fn();
 
@@ -49,7 +49,7 @@ describe("Stats Store", () => {
             await promise;
             expect(store.status).toBe("loaded");
             expect(store.stats.bgcTypeStats.length).toEqual(2);
-            expect(fetch).toHaveBeenCalledWith("/api/v2.0/stats");
+            expect(fetch).toHaveBeenCalledWith(STATS_URL);
         });
         it("shouldn't refetch the stats once fetched", async () => {
             const store = useStatsStore();

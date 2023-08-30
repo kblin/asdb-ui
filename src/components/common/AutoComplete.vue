@@ -8,6 +8,8 @@ interface AutocompleteOption {
 
 const data = defineModel<string>();
 
+const AVAILABLE_URL = "/api/available/term";
+
 const props = defineProps<{
     category: string;
 }>();
@@ -23,7 +25,7 @@ watch(data, async (newVal) => {
         return;
     }
     try {
-        let raw_completions = await fetch(`/api/v1.0/available/${props.category}/${newVal}`);
+        let raw_completions = await fetch(`${AVAILABLE_URL}/${props.category}/${newVal}`);
         options.value = await raw_completions.json();
         shownOptions.value = options.value.slice(0, 10);
     } catch (err) {

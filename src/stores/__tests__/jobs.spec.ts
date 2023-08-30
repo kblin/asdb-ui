@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { fetchErrorResponse, fetchInvalidJsonResponse, fetchJsonResponse } from "../test_utils";
 
-import { useJobsStore } from "../jobs";
+import { useJobsStore, JOB_URL_BASE } from "../jobs";
 import { Job } from "@/models/jobs";
 
 global.fetch = vi.fn();
@@ -60,7 +60,7 @@ describe("Jobs Store", () => {
             // @ts-ignore
             fetch.mockResolvedValue(fetchJsonResponse(DATA));
             const job = await store.getJob("fake");
-            expect(fetch).toHaveBeenCalledWith("/api/v1.0/job/fake");
+            expect(fetch).toHaveBeenCalledWith(`${JOB_URL_BASE}/fake`);
             expect(job?.id).toBe("fake");
         });
         it("returns undefined if the fetch fails", async () => {
@@ -68,7 +68,7 @@ describe("Jobs Store", () => {
             // @ts-ignore
             fetch.mockResolvedValue(fetchErrorResponse("ruhroh"));
             const job = await store.getJob("fake");
-            expect(fetch).toHaveBeenCalledWith("/api/v1.0/job/fake");
+            expect(fetch).toHaveBeenCalledWith(`${JOB_URL_BASE}/fake`);
             expect(job).toBeUndefined();
         });
         it("returns undefined if the JSON decoding fails", async () => {
@@ -76,7 +76,7 @@ describe("Jobs Store", () => {
             // @ts-ignore
             fetch.mockResolvedValue(fetchInvalidJsonResponse("ruhroh"));
             const job = await store.getJob("fake");
-            expect(fetch).toHaveBeenCalledWith("/api/v1.0/job/fake");
+            expect(fetch).toHaveBeenCalledWith(`${JOB_URL_BASE}/fake`);
             expect(job).toBeUndefined();
         });
     });

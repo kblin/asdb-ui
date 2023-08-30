@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { fetchErrorResponse, fetchInvalidJsonResponse, fetchJsonResponse } from "../test_utils";
 
-import { useCategoriesStore } from "../categories";
+import { useCategoriesStore, CATEGORIES_URL } from "../categories";
 import { DATA } from "../../models/__tests__/categories.spec";
 
 global.fetch = vi.fn();
@@ -27,7 +27,7 @@ describe("Categories Store", () => {
             expect(store.status).toBe("loading");
             await promise;
             expect(store.status).toBe("loaded");
-            expect(fetch).toHaveBeenCalledWith("/api/v1.0/available_categories");
+            expect(fetch).toHaveBeenCalledWith(CATEGORIES_URL);
             expect(store.categories.hasData()).toBeTruthy();
         });
         it("doesn't reload the category data on consecutive calls", async () => {

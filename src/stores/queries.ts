@@ -2,6 +2,9 @@ import { reactive, ref, type Ref } from "vue";
 import { defineStore } from "pinia";
 import { QueryTerm, createQueryTerm, type QueryState } from "@/models/queries";
 
+export const SEARCH_URL = "/api/search";
+export const CONVERT_URL = "/api/convert";
+
 export const useQueriesStore = defineStore("queries", () => {
     const term = reactive(new QueryTerm("expr"));
     const paginate = ref(50);
@@ -22,7 +25,7 @@ export const useQueriesStore = defineStore("queries", () => {
             offset: offset.value,
         };
         state.value = "running";
-        const raw = await fetch("/api/v2.0/search", {
+        const raw = await fetch(SEARCH_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +39,7 @@ export const useQueriesStore = defineStore("queries", () => {
         }
         try {
             const data = await raw.json();
-            results.value = data.clusters;
+            results.value = data.regions;
             offset.value = data.offset + paginate.value;
             paginate.value = data.paginate;
             total.value = data.total;
@@ -76,7 +79,7 @@ export const useQueriesStore = defineStore("queries", () => {
             offset: offset.value,
         };
         loadingMore.value = true;
-        const raw = await fetch("/api/v2.0/search", {
+        const raw = await fetch(SEARCH_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -102,7 +105,7 @@ export const useQueriesStore = defineStore("queries", () => {
     }
 
     async function convertSearch(terms_string: string) {
-        const convertUrl = new URL("/api/v1.0/convert", `${window.location}`);
+        const convertUrl = new URL(CONVERT_URL, `${window.location}`);
         convertUrl.searchParams.set("search_string", terms_string);
 
         const response = await fetch(convertUrl);

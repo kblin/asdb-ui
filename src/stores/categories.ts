@@ -2,6 +2,8 @@ import { ref, reactive } from "vue";
 import { defineStore } from "pinia";
 import { Categories } from "@/models/categories";
 
+export const CATEGORIES_URL = "/api/available/categories";
+
 export const useCategoriesStore = defineStore("categories", () => {
     const categories = reactive(new Categories());
     const error = ref("");
@@ -13,7 +15,7 @@ export const useCategoriesStore = defineStore("categories", () => {
             return;
         }
         status.value = "loading";
-        const categoryResponse = await fetch("/api/v1.0/available_categories");
+        const categoryResponse = await fetch(CATEGORIES_URL);
         if (!categoryResponse.ok) {
             error.value = categoryResponse.statusText;
             status.value = "error";
