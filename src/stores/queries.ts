@@ -17,7 +17,7 @@ export const useQueriesStore = defineStore("queries", () => {
     async function runSearch() {
         const req = {
             query: {
-                search: "cluster",
+                search: "region",
                 terms: term.toJson(),
                 return_type: "json",
             },
