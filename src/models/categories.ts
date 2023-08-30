@@ -94,12 +94,14 @@ export class Categories {
     groups: Array<CategoryGroup>;
     type_mapping: Map<string, string>;
     available_filters: Map<string, CategoryFilter[]>;
+    countable: Map<string, boolean>;
 
     constructor(options?: Array<CategoryOption>, groups?: Array<CategoryGroup>) {
         this.options = options ?? [];
         this.groups = groups ?? [];
         this.type_mapping = new Map();
         this.available_filters = new Map();
+        this.countable = new Map();
     }
 
     hasData() {
@@ -123,12 +125,14 @@ export class Categories {
         this.options.forEach((option) => {
             this.type_mapping.set(option.value, option.type);
             this.available_filters.set(option.value, option.filters);
+            this.countable.set(option.value, option.countable);
         });
 
         this.groups.forEach((group) => {
             group.options.forEach((option) => {
                 this.type_mapping.set(option.value, option.type);
                 this.available_filters.set(option.value, option.filters);
+                this.countable.set(option.value, option.countable);
             });
         });
     }
@@ -139,5 +143,9 @@ export class Categories {
 
     getFilters(name: string) {
         return this.available_filters.get(name) ?? [];
+    }
+
+    isCountable(name: string) {
+        return this.countable.get(name) ?? false;
     }
 }

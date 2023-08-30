@@ -132,4 +132,14 @@ describe("Categories", () => {
             expect(g1o1_filters[0].choices.choices.get("strong")).toEqual(30);
         });
     });
+    describe("isCountable", () => {
+        const category = new Categories();
+        category.loadFromJson(DATA);
+        it("returns false for uncountable categories", () => {
+            expect(category.isCountable("group_1_opt_1")).toBeFalsy;
+        });
+        it("returns true for countable categories", () => {
+            expect(category.isCountable("u_opt_1")).toBeTruthy;
+        });
+    });
 });
