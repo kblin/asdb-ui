@@ -6,7 +6,7 @@ import { useQueriesStore, SEARCH_URL, CONVERT_URL } from "../queries";
 global.fetch = vi.fn();
 
 const DATA = {
-    clusters: [
+    regions: [
         {
             acc: "NZ_CP047694",
             assembly_id: "GCF_028472785.1",
@@ -36,7 +36,7 @@ const DATA = {
 };
 
 const MORE_DATA = {
-    clusters: [
+    regions: [
         {
             acc: "NZ_CP060140",
             assembly_id: "GCF_022376295.1",
@@ -74,7 +74,7 @@ const TERM = {
 
 const QUERY = {
     query: {
-        search: "cluster",
+        search: "region",
         terms: TERM,
         return_type: "json",
     },

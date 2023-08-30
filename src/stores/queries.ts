@@ -71,7 +71,7 @@ export const useQueriesStore = defineStore("queries", () => {
     async function loadMore() {
         const req = {
             query: {
-                search: "cluster",
+                search: "region",
                 terms: term.toJson(),
                 return_type: "json",
             },
@@ -93,7 +93,7 @@ export const useQueriesStore = defineStore("queries", () => {
         }
         try {
             const data = await raw.json();
-            results.value = results.value.concat(data.clusters);
+            results.value = results.value.concat(data.regions);
             offset.value = data.offset + paginate.value;
             paginate.value = data.paginate;
             total.value = data.total;
