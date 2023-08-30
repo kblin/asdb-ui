@@ -19,7 +19,7 @@ export default defineConfig({
     proxy: {
       "/api" : 'http://localhost:5566',
       "/go" : 'http://localhost:5566',
-      "/output": "https://dev.asdb.secondarymetabolites.org",
+      "/output": "http://localhost:5566",
     },
   },
 })
