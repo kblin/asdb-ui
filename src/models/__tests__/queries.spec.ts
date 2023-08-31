@@ -100,6 +100,10 @@ describe("QueryTerm", () => {
             term.left = undefined;
             expect(term.toString()).toBe("{[charlie|eve]}");
         });
+        it("stringifies counts > 1 correctly", () => {
+            const term = createExpr(2);
+            expect(term.toString()).toBe("2*{[alice|bob]}");
+        });
     });
 
     describe("addTerm", () => {

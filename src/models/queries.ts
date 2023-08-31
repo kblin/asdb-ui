@@ -323,14 +323,21 @@ export class QueryTerm {
         if (!this.category) {
             return "";
         }
-        if (!this.value) {
-            return `{[${this.category}]}`;
-        }
-        if (this.filters.length < 1) {
-            return `{[${this.category}|${this.value}]}`;
+
+        let ret = "";
+
+        if (this.count > 1) {
+            ret = `${this.count}*`;
         }
 
-        return `{[${this.category}|${this.value}]${this.filters.map((filter) =>
+        if (!this.value) {
+            return `${ret}{[${this.category}]}`;
+        }
+        if (this.filters.length < 1) {
+            return `${ret}{[${this.category}|${this.value}]}`;
+        }
+
+        return `${ret}{[${this.category}|${this.value}]${this.filters.map((filter) =>
             filter.toString()
         )}}`;
     }

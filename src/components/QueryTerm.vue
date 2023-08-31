@@ -32,6 +32,12 @@ const hasFilters = computed(() => {
 const showFilters = computed(() => {
     return (hasFilters.value && wantShowFilters.value) || (term.value?.filters ?? []).length > 0;
 });
+const isCountable = computed(() => {
+    if (!term.value || !term.value.category) {
+        return false;
+    }
+    return store.categories.isCountable(term.value.category);
+});
 
 function getTermKind() {
     if (!term.value) {
@@ -72,6 +78,9 @@ function updateFilter(idx: number, filter: QueryFilter) {
                     />
                 </optgroup>
             </select>
+            <span v-if="isCountable">
+                <input class="count" type="number" v-model="term.count" /> x
+            </span>
             <AutoComplete
                 v-if="
                     getTermKind() == 'text' &&
@@ -177,6 +186,9 @@ function updateFilter(idx: number, filter: QueryFilter) {
 </template>
 
 <style scoped>
+.count {
+    width: 4rem;
+}
 .expression {
     width: 40%;
 }
