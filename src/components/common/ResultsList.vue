@@ -15,7 +15,7 @@ function getNcbiLink(region: any) {
 }
 
 function getMibigLink(region: any) {
-    return `https://mibig.secondarymetabolites.org/go/${region.cbh_acc}`;
+    return `https://mibig.secondarymetabolites.org/go/${region.best_mibig_hit_acc}`;
 }
 
 function getRegionClass(region: any) {
@@ -32,13 +32,13 @@ function getRegionClass(region: any) {
 function getCbhStyle(region: any) {
     let color = "rgba(205, 92, 92, 0.3)";
 
-    if (region.similarity > 75) {
+    if (region.best_mibig_hit_similarity > 75) {
         color = "rgba(0, 100, 0, 0.3)";
-    } else if (region.similarity > 50) {
+    } else if (region.best_mibig_hit_similarity > 50) {
         color = "rgba(210, 105, 30, 0.3)";
     }
 
-    return `background-image: linear-gradient(to left, ${color}, ${color} ${region.similarity}%, #ffffff00 ${region.similarity}%)`;
+    return `background-image: linear-gradient(to left, ${color}, ${color} ${region.best_mibig_hit_similarity}%, #ffffff00 ${region.best_mibig_hit_similarity}%)`;
 }
 </script>
 
@@ -78,12 +78,14 @@ function getCbhStyle(region: any) {
                 <td class="digits">{{ region.start_pos }}</td>
                 <td class="digits">{{ region.end_pos }}</td>
                 <td>{{ region.contig_edge ? "Yes" : "No" }}</td>
-                <template v-if="region.cbh_acc">
-                    <td>{{ region.cbh_description }}</td>
-                    <td class="digits" :style="getCbhStyle(region)">{{ region.similarity }}</td>
+                <template v-if="region.best_mibig_hit_acc">
+                    <td>{{ region.best_mibig_hit_description }}</td>
+                    <td class="digits" :style="getCbhStyle(region)">
+                        {{ region.best_mibig_hit_similarity }}
+                    </td>
                     <td>
                         <a :href="getMibigLink(region)" class="link-external">{{
-                            region.cbh_acc
+                            region.best_mibig_hit_acc
                         }}</a>
                     </td>
                 </template>
