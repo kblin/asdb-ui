@@ -7,6 +7,8 @@ import "jstree/dist/themes/default/throbber.gif";
 import { onMounted, ref } from "vue";
 const j = ref();
 
+const ASSEMBLY_URL = "/api/assembly";
+
 const emit = defineEmits<{
     status: [status: string];
     display: [regions: any[]];
@@ -45,7 +47,7 @@ onMounted(() => {
             emit("status", "loading");
             $.ajax({
                 method: "get",
-                url: `/api/v1.0/assembly/${assembly}`,
+                url: `${ASSEMBLY_URL}/${assembly}`,
                 dataType: "json",
                 contentType: "application/json",
                 processData: false,
