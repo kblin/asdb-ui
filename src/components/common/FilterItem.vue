@@ -71,7 +71,7 @@ function filterChanged() {
             v-model="filter.value"
             @keypress="filterChanged"
         />
-        <template v-else-if="currentType == 'numeric'">
+        <template v-else-if="currentType == 'numeric' || currentType == 'qualitative'">
             <select v-model="filter.operator" @change="filterChanged">
                 <option label="pick one" value=""></option>
                 <option label="greater than" value=">"></option>

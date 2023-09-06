@@ -1,14 +1,18 @@
+
+type ChoiceTuple = [string, number];
+
 export class CategoryFilterChoices {
     labels: string[];
     choices: Map<string, number>;
 
-    constructor(choices: object) {
+    constructor(choices: ChoiceTuple[]) {
         this.labels = [];
-        this.choices = new Map(Object.entries(choices));
+        this.choices = new Map(choices);
 
-        for (const choice in choices) {
-            this.labels.push(choice);
-        }
+        choices.forEach((choice) => {
+            this.labels.push(choice[0]);
+        });
+        console.log(this);
     }
 }
 
@@ -18,11 +22,11 @@ export class CategoryFilter {
     value: string;
     choices: CategoryFilterChoices;
 
-    constructor(label: string, type: string, value: string, choices?: object) {
+    constructor(label: string, type: string, value: string, choices?: ChoiceTuple[]) {
         this.label = label;
         this.type = type;
         this.value = value;
-        this.choices = new CategoryFilterChoices(choices ?? {});
+        this.choices = new CategoryFilterChoices(choices ?? []);
     }
 }
 

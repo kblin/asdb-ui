@@ -27,11 +27,11 @@ export const DATA = {
                             label: "group 1 option 1 filter 1",
                             type: "number",
                             value: 30,
-                            choices: {
-                                strong: 30,
-                                medium: 20,
-                                weak: 10,
-                            },
+                            choices: [
+                                ["strong", 30],
+                                ["medium", 20],
+                                ["weak", 10],
+                            ],
                         },
                     ],
                 },
