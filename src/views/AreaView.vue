@@ -3,6 +3,8 @@ import { onMounted, ref, type Ref } from "vue";
 import { useRoute } from "vue-router";
 import ResultsList from "@/components/common/ResultsList.vue";
 
+const AREA_API_URL = "/api/area";
+
 const route = useRoute();
 const record = route.query.record ? route.query.record : route.query.acc;
 const start = route.query.start;
@@ -14,7 +16,7 @@ const regions: Ref<any[]> = ref([]);
 
 onMounted(async () => {
     state.value = "in-progress";
-    let response = await fetch(`/api/v1.0/area/${record}/${start}-${end}`, {
+    let response = await fetch(`${AREA_API_URL}/${record}/${start}-${end}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -34,7 +36,7 @@ onMounted(async () => {
         return;
     }
     state.value = "done";
-    data.clusters.forEach((region: any) => {
+    data.regions.forEach((region: any) => {
         regions.value.push(region);
     });
 
