@@ -76,7 +76,7 @@ function filterChanged() {
                 <option label="pick one" value=""></option>
                 <option label="greater than" value=">"></option>
                 <option label="greater than or equal to" value=">="></option>
-                <option label="equal to" value="="></option>
+                <option label="equal to" value="=="></option>
                 <option label="less than or equal to" value="<="></option>
                 <option label="less than" value="<"></option>
             </select>
