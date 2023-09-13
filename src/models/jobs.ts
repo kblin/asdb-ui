@@ -2,6 +2,7 @@
 export const JobType = {
     COMPARIPPSON: "comparippson",
     CLUSTERBLAST: "clusterblast",
+    STOREDQUERY: "storedquery",
 } as const;
 
 export type JobTypeT = (typeof JobType)[keyof typeof JobType];

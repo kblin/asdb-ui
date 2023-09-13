@@ -26,9 +26,36 @@ const showLoadMore = computed(() => {
     return true;
 });
 
+const isSearchJob = computed(() => {
+    if (store.search_type != "region") {
+        return true;
+    }
+    if (store.return_type != "json") {
+        return true;
+    }
+    return false;
+});
+
 function clearSearch() {
     store.clearSearch();
     router.replace({ query: undefined });
+}
+
+function changeSearchType(type: string) {
+    store.search_type = type;
+    switch (type) {
+        case "region":
+            if (store.return_type == "fastaa") {
+                store.return_type = "json";
+            }
+            break;
+        case "gene":
+        case "domain":
+            if (store.return_type == "fasta") {
+                store.return_type = "fastaa";
+            }
+            break;
+    }
 }
 </script>
 
@@ -39,13 +66,82 @@ function clearSearch() {
         <button @click="clearSearch">Clear Search</button>
     </div>
     <div class="pattern-list" v-if="store.state == 'input'">
+        <div class="query-settings">
+            <div class="search-options">
+                <label>Search:</label>
+                <div class="btn-group">
+                    <label
+                        class="btn btn-info"
+                        :class="store.search_type == 'region' ? 'active' : ''"
+                        @click="changeSearchType('region')"
+                        >Region</label
+                    >
+                    <label
+                        class="btn btn-info"
+                        :class="store.search_type == 'gene' ? 'active' : ''"
+                        @click="changeSearchType('gene')"
+                        >Gene</label
+                    >
+                    <label
+                        class="btn btn-info"
+                        :class="store.search_type == 'domain' ? 'active' : ''"
+                        @click="changeSearchType('domain')"
+                        >NRPS/PKS domain</label
+                    >
+                </div>
+            </div>
+            <div class="return-options">
+                <label>Return data in format:</label>
+                <div class="btn-group">
+                    <label
+                        class="btn btn-info"
+                        :class="store.return_type == 'json' ? 'active' : ''"
+                        @click="store.return_type = 'json'"
+                        >JSON</label
+                    >
+                    <label
+                        class="btn btn-info"
+                        :class="store.return_type == 'csv' ? 'active' : ''"
+                        @click="store.return_type = 'csv'"
+                        >CSV</label
+                    >
+                    <label
+                        v-if="!['gene', 'domain'].includes(store.search_type)"
+                        class="btn btn-info"
+                        :class="store.return_type == 'fasta' ? 'active' : ''"
+                        @click="store.return_type = 'fasta'"
+                        >DNA FASTA</label
+                    >
+                    <label
+                        v-if="store.search_type != 'region'"
+                        class="btn btn-info"
+                        :class="store.return_type == 'fastaa' ? 'active' : ''"
+                        @click="store.return_type = 'fastaa'"
+                        >AA FASTA</label
+                    >
+                </div>
+            </div>
+        </div>
         <QueryTerm v-model="store.term" />
         <div>
             {{ store.term.toString() }}
         </div>
         <div class="button-group">
-            <button class="search btn-primary" @click="store.runSearch" :disabled="!searchValid">
+            <button
+                class="search btn-primary"
+                @click="store.runSearch"
+                :disabled="!searchValid"
+                v-if="!isSearchJob"
+            >
                 Search
+            </button>
+            <button
+                class="search btn-primary"
+                @click="store.runDownload"
+                :disabled="!searchValid"
+                v-else
+            >
+                Download
             </button>
             <button class="example" @click="store.loadExample">Load example</button>
         </div>
@@ -91,5 +187,27 @@ function clearSearch() {
 .query-buttons {
     display: flex;
     justify-content: flex-end;
+}
+
+.query-settings {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+}
+.query-settings > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.query-settings > div > label {
+    padding-right: 0.5rem;
+}
+.btn-info {
+    color: white;
+    background-color: var(--color-info);
+    background-image: none;
+}
+.btn-info.active {
+    background-color: var(--as-c-darkblue);
 }
 </style>

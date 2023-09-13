@@ -2,6 +2,7 @@
 import ClusterblastResults from "@/components/common/ClusterblastResults.vue";
 import ComparippsonResults from "@/components/common/ComparippsonResults.vue";
 import DialogView from "@/components/DialogView.vue";
+import StoredQueryResult from "@/components/common/StoredQueryResult.vue";
 
 import IconArrowLeft from "./icons/IconArrowLeft.vue";
 import IconHelp from "@/components/icons/IconHelp.vue";
@@ -27,6 +28,8 @@ function getDisplayType(job: Job) {
             return ClusterblastResults;
         case JobType.COMPARIPPSON:
             return ComparippsonResults;
+        case JobType.STOREDQUERY:
+            return StoredQueryResult;
         default:
             return IconHelp;
     }
@@ -71,7 +74,16 @@ function deleteJobConfirmed() {
         </h1>
     </div>
     <div v-if="job">
-        <component v-if="job.status == 'done'" :is="getDisplayType(job)" :hits="job.results.hits" />
+        <component
+            v-if="job.status == 'done' && job.jobtype != JobType.STOREDQUERY"
+            :is="getDisplayType(job)"
+            :hits="job.results.hits"
+        />
+        <component
+            v-else-if="job.status == 'done' && job.jobtype == JobType.STOREDQUERY"
+            :is="getDisplayType(job)"
+            :filename="job.results"
+        />
         <div v-else-if="job.status == 'failed'">Job failed: {{ job.results?.error }}</div>
         <div v-else>Job is still {{ job.status }}, please try again later.</div>
     </div>
