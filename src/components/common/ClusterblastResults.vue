@@ -23,7 +23,7 @@ function getAreaLink(hit: any) {
                 <tr v-for="(hit, index) in props.hits" :key="index">
                     <td>{{ hit.q_acc }}</td>
                     <td>{{ hit.s_locus }}</td>
-                    <td class="digits identity">{{ hit.identity }}</td>
+                    <td class="digits identity">{{ hit.identity.toFixed(2) }}</td>
                     <td>
                         <a :href="getAreaLink(hit)" target="_blank">{{ hit.s_acc }}</a>
                     </td>
