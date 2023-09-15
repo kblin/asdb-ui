@@ -18,7 +18,7 @@ const author_list = ref(props.authors?.join("; "));
         ><br />
         {{ author_list }}<br />
         <em>{{ props.journal }}</em> ({{ props.year }}), DOI:
-        <a href="https://doi.org/{{ props.doi }}" target="_blank">{{ props.doi }}</a>
+        <a :href="`https://doi.org/${props.doi}`" target="_blank">{{ props.doi }}</a>
     </p>
 </template>
 
