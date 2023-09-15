@@ -76,7 +76,7 @@ function newSearch() {
             <textarea
                 id="search-seq"
                 class="expression"
-                maxlength="100"
+                maxlength="1000"
                 placeholder="ITSISLCTPGCK..."
                 v-model="sequence"
             ></textarea>
