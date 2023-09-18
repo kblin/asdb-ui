@@ -47,7 +47,6 @@ const hasChoices = computed(() => {
 });
 
 function filterChanged() {
-    console.log(filter.value);
     emit("changed", filter.value);
 }
 </script>

@@ -1,4 +1,3 @@
-
 type ChoiceTuple = [string, number];
 
 export class CategoryFilterChoices {
@@ -12,7 +11,6 @@ export class CategoryFilterChoices {
         choices.forEach((choice) => {
             this.labels.push(choice[0]);
         });
-        console.log(this);
     }
 }
 
