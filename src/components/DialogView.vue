@@ -20,6 +20,12 @@ function handleDialog() {
     }
     if (props.open) {
         if (props.modal) {
+            if (!dialog.value.showModal) {
+                alert(
+                    "Your browser does not support dialog options, please use a more recent browser."
+                );
+                return;
+            }
             dialog.value.showModal();
             return;
         }
