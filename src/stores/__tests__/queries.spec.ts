@@ -110,7 +110,7 @@ describe("Queries Store", () => {
             expect(store.state).toBe("done");
             expect(store.results.length).toEqual(1);
             expect(store.results[0].bgc_id).toBe(119571);
-            expect(store.offset).toEqual(1);
+            expect(store.offset).toEqual(0);
         });
         it("handles fetch errors", async () => {
             const store = useQueriesStore();
@@ -140,7 +140,7 @@ describe("Queries Store", () => {
             fetch.mockResolvedValue(fetchJsonResponse(MORE_DATA));
             store.term.load(TERM);
             store.paginate = 1;
-            store.offset = 1;
+            store.offset = 0;
             const promise = store.loadMore();
             expect(store.loadingMore).toBe(true);
             await promise;
@@ -156,7 +156,7 @@ describe("Queries Store", () => {
             expect(store.error).toBe("");
             expect(store.results.length).toEqual(1); // because we cheat and don't actually have data yet
             expect(store.results[0].bgc_id).toBe(160795);
-            expect(store.offset).toEqual(2);
+            expect(store.offset).toEqual(1);
         });
         it("handles fetch errors", async () => {
             const store = useQueriesStore();

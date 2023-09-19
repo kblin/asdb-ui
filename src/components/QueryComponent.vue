@@ -41,6 +41,11 @@ function clearSearch() {
     router.replace({ query: undefined });
 }
 
+function editSearch() {
+    store.state = "input";
+    store.offset = 0;
+}
+
 function changeSearchType(type: string) {
     store.search_type = type;
     switch (type) {
@@ -62,7 +67,7 @@ function changeSearchType(type: string) {
 <template>
     <h1>Query</h1>
     <div class="query-buttons">
-        <button @click="store.state = 'input'" v-show="store.state != 'input'">Edit Search</button>
+        <button @click="editSearch" v-show="store.state != 'input'">Edit Search</button>
         <button @click="clearSearch">Clear Search</button>
     </div>
     <div class="pattern-list" v-if="store.state == 'input'">

@@ -49,7 +49,7 @@ export const useQueriesStore = defineStore("queries", () => {
         try {
             const data = await raw.json();
             results.value = data.regions;
-            offset.value = data.offset + paginate.value;
+            offset.value = data.offset;
             paginate.value = data.paginate;
             total.value = data.total;
             state.value = "done";
@@ -85,7 +85,7 @@ export const useQueriesStore = defineStore("queries", () => {
                 return_type: "json",
             },
             paginate: paginate.value,
-            offset: offset.value,
+            offset: offset.value + paginate.value,
         };
         loadingMore.value = true;
         const raw = await fetch(SEARCH_URL, {
@@ -103,7 +103,7 @@ export const useQueriesStore = defineStore("queries", () => {
         try {
             const data = await raw.json();
             results.value = results.value.concat(data.regions);
-            offset.value = data.offset + paginate.value;
+            offset.value = data.offset;
             paginate.value = data.paginate;
             total.value = data.total;
             loadingMore.value = false;
@@ -174,6 +174,7 @@ export const useQueriesStore = defineStore("queries", () => {
 
     function clearSearch() {
         term.clear();
+        offset.value = 0;
         state.value = "input";
         error.value = "";
     }
