@@ -22,16 +22,16 @@ const current_icon = computed(() => {
 </script>
 
 <template>
-    <div class="header" :class="{ active: !collapsed }">
-        <component :is="current_icon" @click="collapsed = !collapsed" />
-        <div class="collapsible-title" @click="collapsed = !collapsed">{{ props.title }}</div>
+    <div class="header" :class="{ active: !collapsed }" @click="collapsed = !collapsed">
+        <component :is="current_icon" />
+        <div class="collapsible-title">{{ props.title }}</div>
     </div>
     <div class="content" v-if="!collapsed">
         <slot></slot>
     </div>
 </template>
 
-<style scoped>
+<style>
 .header {
     display: flex;
     align-items: center;
@@ -58,7 +58,6 @@ const current_icon = computed(() => {
 }
 
 .content {
-    display: flex;
     margin-bottom: 1rem;
     border: 1px solid var(--color-border);
     border-bottom-left-radius: 4px;
