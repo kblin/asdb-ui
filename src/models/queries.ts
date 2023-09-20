@@ -118,9 +118,7 @@ const condensationOptions = [
 const activationOptions = ["AMP-binding", "A-OX", "PKS_AT"];
 
 const modificationOptions = [
-    "oMT",
-    "cMT",
-    "nMT",
+    "MT",
     "PKS_KR",
     "PKS_DH",
     "PKS_DH2",

@@ -24,7 +24,7 @@ const currentStep = ref<ModuleStep>();
 function loadExample() {
     domains.value.steps[0].alternatives = [["PKS_KS"]];
     domains.value.steps[1].alternatives = [["none"]];
-    domains.value.steps[2].alternatives = [["PKS_KR"], ["PKS_ER"], ["PKS_DH", "cMT"]];
+    domains.value.steps[2].alternatives = [["PKS_KR"], ["PKS_ER"], ["PKS_DH", "MT"]];
     domains.value.steps[3].alternatives = [["any"]];
     domains.value.steps[4].alternatives = [["Thioesterase"]];
     domains.value.steps[5].alternatives = [];
