@@ -33,3 +33,9 @@ function getAreaLink(hit: any) {
     </div>
     <div v-else>Your search gave no results, try again with a different sequence.</div>
 </template>
+
+<style>
+.identity {
+    text-align: right;
+}
+</style>
