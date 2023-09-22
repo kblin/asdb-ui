@@ -72,7 +72,7 @@ function newSearch() {
                 v-model="name"
             />
 
-            <label for="search-seq">Core peptide protein sequence</label>
+            <label for="search-seq">Protein sequence</label>
             <textarea
                 id="search-seq"
                 class="expression"
