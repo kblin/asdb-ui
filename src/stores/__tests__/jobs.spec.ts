@@ -108,6 +108,7 @@ describe("Jobs Store", () => {
             expect(fetch).toHaveBeenCalledWith("/api/job/fetch-me");
             const updatedJob = await store.getJob("fetch-me");
             expect(updatedJob?.status).toBe("failed");
+            expect(updatedJob?.nextUrl).toBe("");
         });
         it("sets the job status to failed when the JSON decoding fails", async () => {
             const store = useJobsStore();
@@ -119,6 +120,7 @@ describe("Jobs Store", () => {
             expect(fetch).toHaveBeenCalledWith("/api/job/fetch-me");
             const updatedJob = await store.getJob("fetch-me");
             expect(updatedJob?.status).toBe("failed");
+            expect(updatedJob?.nextUrl).toBe("");
         });
     });
 });

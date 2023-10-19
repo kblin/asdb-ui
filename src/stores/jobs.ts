@@ -54,6 +54,7 @@ export const useJobsStore = defineStore(
                 const raw = await fetch(job.nextUrl);
                 if (!raw.ok) {
                     job.status = "failed";
+                    job.nextUrl = "";
                     return;
                 }
 
@@ -62,6 +63,7 @@ export const useJobsStore = defineStore(
                     job.load(data);
                 } catch {
                     job.status = "failed";
+                    job.nextUrl = "";
                 }
             });
         }
