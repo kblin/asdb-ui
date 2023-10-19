@@ -11,7 +11,7 @@ function showRegion(region: any) {
 }
 
 function getNcbiLink(region: any) {
-    return `https://www.ncbi.nlm.nih.gov/genome/?term=${region.acc}`;
+    return `https://www.ncbi.nlm.nih.gov/nucleotide/?term=${region.acc}`;
 }
 
 function getMibigLink(region: any) {
